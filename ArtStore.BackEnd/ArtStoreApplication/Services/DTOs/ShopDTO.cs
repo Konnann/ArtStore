@@ -13,7 +13,7 @@ namespace ArtStore.BackEnd.ArtStoreApplication.Services.DTOs
             this.Id = shop.Id;
             this.Name = shop.Name;
             this.Description = shop.Description;
-            this.OwnerName = shop.Owner.FirstName;
+            this.DateCreated = shop.DateCreated;
         }
 
         public string Name { get; set; }
@@ -21,5 +21,7 @@ namespace ArtStore.BackEnd.ArtStoreApplication.Services.DTOs
         public string Description { get; set; }
 
         public string OwnerName { get; set; }
+
+        public DateTime DateCreated { get; set; }
     }
 }

@@ -16,7 +16,9 @@ namespace ArtStore.BackEnd.ArtStoreApplication.Services.DTOs
             this.Description = item.Description;
             this.Price = item.Price;
             this.SellerName = item.Seller.Username;
+            this.DateCreated = item.DateCreated;
         }
+
         public string Title { get; set; }
 
         public string Description { get; set; }
@@ -24,5 +26,7 @@ namespace ArtStore.BackEnd.ArtStoreApplication.Services.DTOs
         public string SellerName { get; set; }
 
         public decimal Price { get; set; }
+
+        public DateTime DateCreated { get; set; }
     }
 }

@@ -26,5 +26,7 @@ namespace ArtStore.BackEnd.ArtStoreApplication.Data.Models
         [Required]
         public User Owner { get; set; }
 
+        [Required]
+        public DateTime DateCreated { get; set; }
     }
 }

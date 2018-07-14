@@ -25,14 +25,38 @@ namespace ArtStore.BackEnd.ArtStoreApplication.Services
             }
         }
 
-        public bool Create(string title, string description, decimal price, User seller)
+        public bool Create(string title, string description, decimal price, int sellerId)
         {
-            throw new NotImplementedException();
+            using (var db = new ArtStoreDbContext())
+            {
+                var item = new ItemForSale
+                {
+                    Title = title,
+                    Description = description,
+                    Price = price,
+                    SellerId = sellerId
+                    DateCreated = DateTime.Now
+                };
+
+                db.Add(item);
+                db.SaveChanges();
+            }
+
+            return true;
         }
 
-        public bool Find(int id)
+
+        public string GetById(int id)
         {
-            throw new NotImplementedException();
+            using (var db = new ArtStoreDbContext())
+            {
+                var item = db
+                  .ItemsForSale
+                  .Where(i => i.Id == id)
+                  .Select(i => new ItemForSaleDTO(i).ToJson())
+                  .FirstOrDefault();
+                return item;
+            }
         }
 
         public static void Seed(ArtStoreDbContext db)
@@ -47,7 +71,8 @@ namespace ArtStore.BackEnd.ArtStoreApplication.Services
                        Description = "Compilation of cute stickers",
                        Price = 4.5m,
                        ShopId = 1,
-                       SellerId = 2
+                       SellerId = 2,
+                       DateCreated = DateTime.Now
                     },
                     new ItemForSale
                     {
@@ -55,7 +80,8 @@ namespace ArtStore.BackEnd.ArtStoreApplication.Services
                        Description = "Next generation cute stickers",
                        Price = 5m,
                        ShopId = 1,
-                       SellerId = 2
+                       SellerId = 2,
+                       DateCreated = DateTime.Now
                     },
                     new ItemForSale
                     {
@@ -63,7 +89,8 @@ namespace ArtStore.BackEnd.ArtStoreApplication.Services
                        Description = "Like, totally not a fake!!",
                        Price = 20000m,
                        ShopId = 2,
-                       SellerId = 3
+                       SellerId = 3,
+                       DateCreated = DateTime.Now
                     },
                 };
 

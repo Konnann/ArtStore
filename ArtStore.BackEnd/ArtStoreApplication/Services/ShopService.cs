@@ -12,6 +12,24 @@ namespace ArtStore.BackEnd.ArtStoreApplication.Services
 {
     public class ShopService : IShopService
     {
+        public bool Create(string name, string description, int ownerId)
+        {
+            using (var db = new ArtStoreDbContext())
+            {
+                var shop = new Shop
+                {
+                    Name = name,
+                    Description = description,
+                    OwnerId = ownerId
+                };
+
+                db.Add(shop);
+                db.SaveChanges();
+            }
+
+            return true;
+        }
+
         public string All()
         {
             using (var db = new ArtStoreDbContext())
@@ -23,6 +41,19 @@ namespace ArtStore.BackEnd.ArtStoreApplication.Services
                 sb.Append(string.Join(',', data));
                 sb.Append("}");
                 return sb.ToString();
+            }
+        }
+
+        public string GetById(int id)
+        {
+            using (var db = new ArtStoreDbContext())
+            {
+                var shop = db
+                  .Shops
+                  .Where(s => s.Id == id)
+                  .Select(s => new ShopDTO(s).ToJson())
+                  .FirstOrDefault();
+                return shop;
             }
         }
 
@@ -41,13 +72,15 @@ namespace ArtStore.BackEnd.ArtStoreApplication.Services
                     {
                        Description = "Best shop in the world. Must Visit",
                        Name = "Galaxy sheep",
-                       OwnerId = 2
+                       OwnerId = 2,
+                       DateCreated = DateTime.Now
                     },
                     new Shop
                     {
                        Description = "Please buy my things, I need money to eat",
                        Name = "Hipster extravaganza",
-                       OwnerId = 3
+                       OwnerId = 3,
+                       DateCreated = DateTime.Now
                     }
                 };
 
@@ -55,5 +88,6 @@ namespace ArtStore.BackEnd.ArtStoreApplication.Services
                 db.SaveChanges();
             }
         }
+
     }
 }

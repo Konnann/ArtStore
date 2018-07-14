@@ -32,6 +32,7 @@
             appRouteConfig.AnonymousPaths.Add("/account/register");
             appRouteConfig.AnonymousPaths.Add("/account/login");
             appRouteConfig.AnonymousPaths.Add("/shops/all");
+            appRouteConfig.AnonymousPaths.Add("/shops");
             appRouteConfig.AnonymousPaths.Add("/users/all");
 
 
@@ -71,6 +72,13 @@
                 .Get(
                     "/shops/all",
                     req => new ShopController(req).All());
+
+            appRouteConfig
+                .Get(
+                    "/shops",
+                    req => new ShopController(req).Shop());
+
+
 
             appRouteConfig
                 .Get(

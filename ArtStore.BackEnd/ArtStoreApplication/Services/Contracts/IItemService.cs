@@ -7,9 +7,9 @@ namespace ArtStore.BackEnd.ArtStoreApplication.Services.Contracts
 {
     public interface IItemService
     {
-        bool Create(string title, string description, decimal price, User seller);
+        bool Create(string title, string description, decimal price, int sellerId);
 
-        bool Find(int id);
+        string GetById(int id);
 
         string All();
     }

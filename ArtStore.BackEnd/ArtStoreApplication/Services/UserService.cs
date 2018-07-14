@@ -21,7 +21,7 @@
                 }
 
                 var isAdmin = !db.Users.Any();
-                    
+
                 var user = new User
                 {
                     Username = username,
@@ -114,6 +114,18 @@
 
                 db.AddRange(users);
                 db.SaveChanges();
+            }
+        }
+
+        public User GetById(int id)
+        {
+            using (var db = new ArtStoreDbContext())
+            {
+                var user = db
+                  .Users
+                  .Where(u => u.Id == id)
+                  .FirstOrDefault();
+                return user;
             }
         }
     }
