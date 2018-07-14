@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.26730.16
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArtStore.BackEnd", "ArtStore.BackEnd\ArtStore.BackEnd.csproj", "{D4B182EA-BA0D-45A6-A312-3B0A2662F1AD}"
 EndProject
+Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "ArtStore.FrontEnd", "ArtStore.FrontEnd\ArtStore.FrontEnd.njsproj", "{DF157A4C-EE0B-4CC7-B035-920ECD7257AE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{D4B182EA-BA0D-45A6-A312-3B0A2662F1AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D4B182EA-BA0D-45A6-A312-3B0A2662F1AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D4B182EA-BA0D-45A6-A312-3B0A2662F1AD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF157A4C-EE0B-4CC7-B035-920ECD7257AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF157A4C-EE0B-4CC7-B035-920ECD7257AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF157A4C-EE0B-4CC7-B035-920ECD7257AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF157A4C-EE0B-4CC7-B035-920ECD7257AE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

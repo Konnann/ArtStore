@@ -34,7 +34,7 @@ namespace ArtStore.BackEnd.ArtStoreApplication.Services
                     Title = title,
                     Description = description,
                     Price = price,
-                    SellerId = sellerId
+                    SellerId = sellerId,
                     DateCreated = DateTime.Now
                 };
 
