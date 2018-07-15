@@ -4,31 +4,74 @@ import NavBar from './components/Common/NavBar';
 import Header from './components/Common/Header';
 import ItemPreview from './components/Items/ItemPreview';
 import MainContent from './components/Common/MainContent'
+import Carousel from './components/Items/Carousel';
 
 class AppStartup extends Component {
+
+  getLatestItems() {
+    return [
+      {
+        id: '1',
+        itemUrl: "#",
+        imageUrl: "https://instagram.fsof3-1.fna.fbcdn.net/vp/18c857305b3c7f99efdb346265309755/5BDF7014/t51.2885-15/e35/21372198_125938121312436_4783919807634341888_n.jpg",
+        title: "Pastel stationery",
+        shopName: "ArtOfRai",
+        price: "22.50",
+        shopUrl:"#"
+      }, {
+        id: '2',
+        itemUrl: "#",
+        imageUrl: "https://instagram.fsof3-1.fna.fbcdn.net/vp/4061879e83908e0fe2a8d7aaad95e080/5BDCEAEB/t51.2885-15/e35/25018016_1363009053827164_1731887996665331712_n.jpg",
+        title: "Cactus stationery set",
+        shopName: "ArtOfRai",
+        price: "15.00",
+        shopUrl:"#"
+      }, {
+        id: '3',
+        itemUrl: "#",
+        imageUrl: "https://instagram.fsof3-1.fna.fbcdn.net/vp/2f8466bc7103cd8963cef7cb6d341a7c/5BD63036/t51.2885-15/e35/16908798_678483738998270_2457583434982227968_n.jpg",
+        title: "Cactuses framed art",
+        shopName: "ArtOfRai",
+        price: "20.50",
+        shopUrl:"#"
+      }, {
+        id: '4',
+        itemUrl: "#",
+        imageUrl: "https://instagram.fsof3-1.fna.fbcdn.net/vp/0a70248eaec94cfc76cbec1a77dd92d5/5BECA8B1/t51.2885-15/e35/17818280_279293759176735_4013306141046996992_n.jpg",
+        title: "Exotic flowers set",
+        shopName: "ArtOfRai",
+        price: "30.50",
+        shopUrl:"#"
+      }, {
+        id: '5',
+        itemUrl: "#",
+        imageUrl: "https://instagram.fsof3-1.fna.fbcdn.net/vp/a00120c59c0dc09c46d331eb63b365a6/5BE6C41E/t51.2885-15/e35/20838945_175561016322121_1173313923428909056_n.jpg",
+        title: "Handmade sketchbook",
+        shopName: "ArtOfRai",
+        price: "15.00",
+        shopUrl:"#"
+      }
+    ]
+  }
+
   render() {
+    var items = this.getLatestItems();
+
     return (
       <div className="App">
         <div className="main-container">
           <Header/>
           <NavBar/>
           <MainContent>
-            <ItemPreview 
-              itemUrl="https://instagram.fsof3-1.fna.fbcdn.net/vp/18c857305b3c7f99efdb346265309755/5BDF7014/t51.2885-15/e35/21372198_125938121312436_4783919807634341888_n.jpg"
-              imageUrl="https://instagram.fsof3-1.fna.fbcdn.net/vp/18c857305b3c7f99efdb346265309755/5BDF7014/t51.2885-15/e35/21372198_125938121312436_4783919807634341888_n.jpg"
-              title="Pastel stationary"
-              shopName="ArtOfRai"
-              price="22.50"
-              shopUrl="https://instagram.fsof3-1.fna.fbcdn.net/vp/18c857305b3c7f99efdb346265309755/5BDF7014/t51.2885-15/e35/21372198_125938121312436_4783919807634341888_n.jpg"
-            />
-            <ItemPreview 
-              itemUrl="https://instagram.fsof3-1.fna.fbcdn.net/vp/18c857305b3c7f99efdb346265309755/5BDF7014/t51.2885-15/e35/21372198_125938121312436_4783919807634341888_n.jpg"
-              imageUrl="https://img.etsystatic.com/il/007453/728885626/il_570xN.728885626_fh9z.jpg?version=0"
-              title="Beginner Hula Hoop"
-              shopName="SnowflakeHoops"
-              price="35.00"
-              shopUrl="https://img.etsystatic.com/il/007453/728885626/il_570xN.728885626_fh9z.jpg?version=0"
-            />
+            <em className="section-header">Recently Added</em>
+            <Carousel>
+              { items != undefined ?
+                  items.map((itemData) => {
+                    return <ItemPreview {...itemData} key={itemData.id}/>
+                  })            
+                  : <p>No items to display.</p>   
+              }
+            </Carousel>
           </MainContent>
         </div>
       </div>
