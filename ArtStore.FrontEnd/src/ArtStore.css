@@ -265,3 +265,20 @@ em.section-header {
 }
 
 
+.fade {
+  -webkit-transition: 0.5s;
+  -moz-transition: 0.5s;
+  -o-transition: 0.5s;
+  transition: 0.5s;
+  opacity: 0;
+  visibility: hidden; 
+}
+
+.fade.show {
+  opacity: 1;
+  visibility: visible; 
+}
+
+.carousel-item-wrapper {
+  display: inline-block;
+}

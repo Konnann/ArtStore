@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ItemPreview from './ItemPreview';
+import SlideItem from './SlideItem';
 
 export default class Carousel extends Component {
     constructor(props) {
@@ -11,7 +12,8 @@ export default class Carousel extends Component {
             marginLeft: 0,
             marginRight: 0,
             isMovingLeft: false,
-            isMovingRight: false
+            isMovingRight: false,
+            children: null
         }
 
         this.nextPage = this.nextPage.bind(this);
@@ -20,10 +22,9 @@ export default class Carousel extends Component {
 
     getfocusedItems() {
         var focusedItems = [];
-        var items = this.props.children;
+        var items = this.state.children;
         var index = this.state.firstFocusedItemIndex;
         for (let counter = 0; counter < 5; counter++) {
-            console.log(index);
             focusedItems.push(items[index]);
             index ++;
             if(index > items.length - 1) {
@@ -43,11 +44,11 @@ export default class Carousel extends Component {
             
             
             if(firstFocusedItemIndex < 0) {
-                firstFocusedItemIndex = this.props.children.length - 1;    
+                firstFocusedItemIndex = this.state.children.length - 1;    
             }
 
             if(lastFocusedItemIndex < 0) {
-                lastFocusedItemIndex =  this.props.children.length - 1;
+                lastFocusedItemIndex =  this.state.children.length - 1;
             }
 
         
@@ -90,10 +91,11 @@ export default class Carousel extends Component {
             var lastFocusedItemIndex = this.state.lastFocusedItemIndex + 1;
             
             
-            if(firstFocusedItemIndex >= this.props.children.length) {
+            if(firstFocusedItemIndex >= this.state.children.length) {
                 firstFocusedItemIndex = 0;    
             }
-            if(lastFocusedItemIndex >= this.props.children.length) {
+
+            if(lastFocusedItemIndex >= this.state.children.length) {
                 lastFocusedItemIndex =  0;
             }
 
@@ -129,7 +131,7 @@ export default class Carousel extends Component {
 
     async addItemEnd() {
         var items = this.state.focusedItems;
-        items.push(this.props.children[this.state.lastFocusedItemIndex])
+        items.push(this.state.children[this.state.lastFocusedItemIndex])
         items.shift();
         var marginRight = this.state.marginRight - 200;
         var marginLeft = this.state.marginLeft + 200;
@@ -142,8 +144,7 @@ export default class Carousel extends Component {
 
     async addItemStart() {
         var items = this.state.focusedItems;
-        items.unshift(this.props.children[this.state.firstFocusedItemIndex])
-        items.pop();
+        items.unshift(this.state.children[this.state.firstFocusedItemIndex])
         var marginRight = this.state.marginRight + 200;
         var marginLeft = this.state.marginLeft - 200;
 
@@ -152,13 +153,27 @@ export default class Carousel extends Component {
             marginRight, marginRight,
             marginLeft, marginLeft
         });
+        //console.log(items);
+        //items[0].props.addClassNames(['show']); 
+        this.setState({
+            focusedItems: items
+        })
     }
 
-    componentDidMount() {
+    async componentDidMount() {
+        var children = this.props.children.map((child)=>{
+            return(
+            <SlideItem>
+                {child}
+            </SlideItem>)
+        });
+        await this.setState({children: children});
+
         this.setState({
             focusedItems: this.getfocusedItems()
         })
     }
+
 
     render = () => {
         var marginLeft = this.state.marginLeft + 'px';
