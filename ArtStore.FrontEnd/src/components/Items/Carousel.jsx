@@ -20,6 +20,41 @@ export default class Carousel extends Component {
         this.previousPage = this.previousPage.bind(this);
     }
 
+    async componentWillReceiveProps(newProps) {
+        console.log(newProps);
+        var children = newProps.children.map((child)=>{
+            return(
+            <SlideItem>
+                {child}
+            </SlideItem>)
+        });
+        await this.setState({children});
+
+        this.setState({
+            focusedItems: this.getfocusedItems()
+        })
+    }
+
+
+    render = () => {
+        var marginLeft = this.state.marginLeft + 'px';
+        var marginRight = this.state.marginRight + 'px';
+
+        return (
+            <div className="carousel borders">
+                <div>
+                    <img onClick={this.previousPage} className="left-arrow-img arrow-img" src="http://www.clker.com/cliparts/V/1/Z/A/h/U/left-arrow-right-hi.png"/>
+                    <div className="carousel-images" >
+                        <div style={{marginLeft: marginLeft, marginRight:  marginRight}}>
+                            { this.state.focusedItems }
+                        </div>
+                    </div>
+                    <img onClick={this.nextPage} className="right-arrow-img arrow-img" src="http://www.clker.com/cliparts/V/1/Z/A/h/U/left-arrow-right-hi.png"/>
+                </div>
+            </div>
+        )
+    }
+
     getfocusedItems() {
         var focusedItems = [];
         var items = this.state.children;
@@ -158,40 +193,6 @@ export default class Carousel extends Component {
         this.setState({
             focusedItems: items
         })
-    }
-
-    async componentDidMount() {
-        var children = this.props.children.map((child)=>{
-            return(
-            <SlideItem>
-                {child}
-            </SlideItem>)
-        });
-        await this.setState({children: children});
-
-        this.setState({
-            focusedItems: this.getfocusedItems()
-        })
-    }
-
-
-    render = () => {
-        var marginLeft = this.state.marginLeft + 'px';
-        var marginRight = this.state.marginRight + 'px';
-
-        return (
-            <div className="carousel">
-                <div>
-                    <img onClick={this.previousPage} className="left-arrow-img arrow-img" src="http://www.clker.com/cliparts/V/1/Z/A/h/U/left-arrow-right-hi.png"/>
-                    <div className="carousel-images" >
-                        <div style={{marginLeft: marginLeft, marginRight:  marginRight}}>
-                            { this.state.focusedItems }
-                        </div>
-                    </div>
-                    <img onClick={this.nextPage} className="right-arrow-img arrow-img" src="http://www.clker.com/cliparts/V/1/Z/A/h/U/left-arrow-right-hi.png"/>
-                </div>
-            </div>
-        )
     }
 }
 

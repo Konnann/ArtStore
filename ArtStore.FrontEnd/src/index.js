@@ -3,6 +3,11 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import ArtStore from './ArtStore';
 import registerServiceWorker from './registerServiceWorker';
+import { BrowserRouter } from 'react-router-dom';
 
-ReactDOM.render(<ArtStore />, document.getElementById('root'));
+ReactDOM.render(
+<BrowserRouter>
+    <ArtStore />
+</BrowserRouter>
+, document.getElementById('root'));
 registerServiceWorker();

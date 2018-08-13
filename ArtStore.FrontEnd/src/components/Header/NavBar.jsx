@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 export default class NavBar extends Component {
     constructor(props) {
@@ -11,7 +12,7 @@ export default class NavBar extends Component {
                 <div id="navbarNav">
                     <ul>
                         <li>
-                            <a LinkTo="#">Art &amp; Crafts</a>
+                            <Link to="#">Art &amp; Crafts</Link>
                         </li>
                         <li>
                             <a href="#">Clothing &amp; Shoes</a>

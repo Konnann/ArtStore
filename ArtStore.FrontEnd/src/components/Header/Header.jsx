@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Logo from './Logo'
 import SearchBar from './Search';
-import HeaderAnonLinks from '../Account/HeaderAnonLinks';
+import HeaderAnonLinks from '../Header/HeaderAnonLinks';
 
 export default class Header extends Component {
     constructor(props) {

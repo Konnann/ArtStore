@@ -1,82 +1,63 @@
 import React, { Component } from 'react';
 import './ArtStore.css';
-import NavBar from './components/Common/NavBar';
-import Header from './components/Common/Header';
-import ItemPreview from './components/Items/ItemPreview';
+import NavBar from './components/Header/NavBar';
+import Header from './components/Header/Header';
 import MainContent from './components/Common/MainContent'
-import Carousel from './components/Items/Carousel';
+import Home from './components/Home/Home';
+import Register from './components/Register/Register'
+import { Route, Switch } from 'react-router';
+import ArtStoreModel from './models/ArtStoreModel'; 
 
-class AppStartup extends Component {
+export default class AppStartup extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      model: new ArtStoreModel()
+    }
 
-  getLatestItems() {
-    return [
-      {
-        id: '1',
-        itemUrl: "#",
-        imageUrl: "https://instagram.fsof3-1.fna.fbcdn.net/vp/18c857305b3c7f99efdb346265309755/5BDF7014/t51.2885-15/e35/21372198_125938121312436_4783919807634341888_n.jpg",
-        title: "Pastel stationery",
-        shopName: "ArtOfRai",
-        price: "22.50",
-        shopUrl:"#"
-      }, {
-        id: '2',
-        itemUrl: "#",
-        imageUrl: "https://instagram.fsof3-1.fna.fbcdn.net/vp/4061879e83908e0fe2a8d7aaad95e080/5BDCEAEB/t51.2885-15/e35/25018016_1363009053827164_1731887996665331712_n.jpg",
-        title: "Cactus stationery set",
-        shopName: "ArtOfRai",
-        price: "15.00",
-        shopUrl:"#"
-      }, {
-        id: '3',
-        itemUrl: "#",
-        imageUrl: "https://instagram.fsof3-1.fna.fbcdn.net/vp/2f8466bc7103cd8963cef7cb6d341a7c/5BD63036/t51.2885-15/e35/16908798_678483738998270_2457583434982227968_n.jpg",
-        title: "Cactuses framed art",
-        shopName: "ArtOfRai",
-        price: "20.50",
-        shopUrl:"#"
-      }, {
-        id: '4',
-        itemUrl: "#",
-        imageUrl: "https://instagram.fsof3-1.fna.fbcdn.net/vp/0a70248eaec94cfc76cbec1a77dd92d5/5BECA8B1/t51.2885-15/e35/17818280_279293759176735_4013306141046996992_n.jpg",
-        title: "Exotic flowers set",
-        shopName: "ArtOfRai",
-        price: "30.50",
-        shopUrl:"#"
-      }, {
-        id: '5',
-        itemUrl: "#",
-        imageUrl: "https://instagram.fsof3-1.fna.fbcdn.net/vp/a00120c59c0dc09c46d331eb63b365a6/5BE6C41E/t51.2885-15/e35/20838945_175561016322121_1173313923428909056_n.jpg",
-        title: "Handmade sketchbook",
-        shopName: "ArtOfRai",
-        price: "15.00",
-        shopUrl:"#"
-      }
-    ]
+    this.handleChange = this.handleChange.bind(this);
   }
 
   render() {
-    var items = this.getLatestItems();
+    const HomePage = () => {
+      return (
+        <Home
+          model={this.state.model.home}
+          handleChange={this.handleChange}
+        />
+      );
+    }
+
+    const RegisterPage = () => {
+      return (
+        <Register
+          model={this.state.model.register}
+          handleChange={this.handleChange}
+        />
+      );
+    }
 
     return (
       <div className="App">
         <div className="main-container">
-          <Header/>
-          <NavBar/>
+          <Header />
+          <NavBar />
           <MainContent>
-            <em className="section-header">Recently Added</em>
-            <Carousel>
-              { items != undefined ?
-                  items.map((itemData) => {
-                    return <ItemPreview {...itemData} key={itemData.id}/>
-                  })            
-                  : <p>No items to display.</p>   
-              }
-            </Carousel>
+            <Switch>
+              <Route exact path="/" component={HomePage} />
+              <Route path="/register" component={RegisterPage} />
+            </Switch>
           </MainContent>
         </div>
       </div>
     );
   }
+
+  handleChange() {
+    this.setState((current) => ({
+      ...current
+    }))
+    console.log(this.state.model);
+  }
 }
 
-export default AppStartup;

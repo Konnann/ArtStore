@@ -3,12 +3,13 @@ import React, { Component } from 'react';
 export default class ItemPreview extends Component {
     constructor(props) {
         super(props);
-
+        console.log('here');
         this.state = {
         }
     }
     
     render() {
+
         return (
             <div className="item-container">
                 <a className="item-preview-link" href={this.props.itemUrl}>

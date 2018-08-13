@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 export default class HeaderAnonLinks extends Component {
     render() {
@@ -8,14 +9,14 @@ export default class HeaderAnonLinks extends Component {
                     <tbody>
                         <tr>
                             <td>
-                                <a className="account-header-link" name="register">
+                                <Link to="/register" className="account-header-link" name="register">
                                     Register
-                                </a>
+                                </Link>
                             </td>
                             <td>
-                                <a className="account-header-link account-header-link-button" name="sign-in">
+                                <Link to="/sign-in" className="account-header-link account-header-link-button" name="sign-in">
                                     Sign in
-                                </a>
+                                </Link>
                             </td>
                         </tr>
                     </tbody>
