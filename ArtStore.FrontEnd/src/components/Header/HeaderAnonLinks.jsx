@@ -14,8 +14,8 @@ export default class HeaderAnonLinks extends Component {
                                 </Link>
                             </td>
                             <td>
-                                <Link to="/sign-in" className="account-header-link account-header-link-button" name="sign-in">
-                                    Sign in
+                                <Link to="/logIn" className="account-header-link account-header-link-button" name="logIn">
+                                    Log In 
                                 </Link>
                             </td>
                         </tr>

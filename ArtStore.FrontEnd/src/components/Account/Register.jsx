@@ -1,7 +1,10 @@
 import * as React from 'react';
 import TextField from '../Common/TextField'
+import withFormManager from '../../hocs/wiithFormManager'
+import userModel from '../../models/UserModel'
+import userService from '../../services/userService'
 
-export default class Register extends React.Component {
+export class Register extends React.Component {
 
     constructor(props) {
         super(props);
@@ -19,23 +22,31 @@ export default class Register extends React.Component {
                             <tr>
                                 <TextField 
                                     label="Username:" 
-                                    value={this.props.model.username} 
-                                    handleChange={(e) => this.handleChange(e, 'username')}
+                                    value={this.props.username} 
+                                    handleChange={this.props.handleChange}
+                                    name="username"
                                 />
                             </tr>
                             <tr>
                                 <TextField 
                                     label="Password:" 
-                                    value={this.props.model.password} 
-                                    handleChange={(e) => this.handleChange(e, 'password')}
+                                    value={this.props.password} 
+                                    handleChange={this.props.handleChange}
+                                    name="password"
+                                    type="password"
                                 />
                             </tr>
                             <tr>
                                 <TextField 
                                     label="Confirm Password:" 
-                                    value={this.props.model.confirmPassword} 
-                                    handleChange={(e) => this.handleChange(e, 'confirmPassword')}
+                                    value={""} 
+                                    handleChange={this.props.handleChange}
+                                    name="confirmPassword"
+                                    type="password"
                                 />
+                            </tr>
+                            <tr>
+                                <input id="btnRegister" type="submit" value="Register" handleSubmit={this.props.handleSubmit}/>
                             </tr>
                         </table>
                     </form>
@@ -53,3 +64,5 @@ export default class Register extends React.Component {
     }
 
 }
+
+export default withFormManager(Register, userModel, userService.register);

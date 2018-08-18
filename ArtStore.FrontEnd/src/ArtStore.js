@@ -4,9 +4,10 @@ import NavBar from './components/Header/NavBar';
 import Header from './components/Header/Header';
 import MainContent from './components/Common/MainContent'
 import Home from './components/Home/Home';
-import Register from './components/Register/Register'
+import Register from './components/Account/Register'
 import { Route, Switch } from 'react-router';
-import ArtStoreModel from './models/ArtStoreModel'; 
+import ArtStoreModel from './models/ArtStoreModel';
+import LogIn from './components/Account/LogIn'
 
 export default class AppStartup extends Component {
   constructor(props) {
@@ -37,6 +38,15 @@ export default class AppStartup extends Component {
       );
     }
 
+    const LogInPage = () => {
+      return (
+        <LogIn
+          model={this.state.model.logIn}
+          handleChange={this.handleChange}
+        />
+      );
+    }
+
     return (
       <div className="App">
         <div className="main-container">
@@ -46,6 +56,7 @@ export default class AppStartup extends Component {
             <Switch>
               <Route exact path="/" component={HomePage} />
               <Route path="/register" component={RegisterPage} />
+              <Route path="/logIn" component={LogInPage} />          
             </Switch>
           </MainContent>
         </div>

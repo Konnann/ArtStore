@@ -26,7 +26,7 @@ export default class TextField extends React.Component {
                     </td>
                     <td className="input-col">
                         <div className="text-input">
-                            <input type="text" value={this.props.value} onChange={this.handleChange} />
+                            <input type={this.props.type ? this.props.type : "text"} value={this.props.value} onChange={this.props.handleChange} name={this.props.name}/>
                         </div>
                     </td>
                 </tr>

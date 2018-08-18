@@ -343,3 +343,10 @@ table.formtable {
   width: 60%;
 }
 
+.profile-icon {
+  height:25px;
+}
+
+.pink-text {
+  color: pink;
+}

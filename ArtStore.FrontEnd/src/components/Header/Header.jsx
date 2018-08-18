@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import Logo from './Logo'
 import SearchBar from './Search';
-import HeaderAnonLinks from '../Header/HeaderAnonLinks';
+import HeaderAnonLinks from './HeaderAnonLinks';
+import Utility from '../../common/Utility';
+import HeaderAuthLinks from './HeaderAuthLinks';
 
 export default class Header extends Component {
     constructor(props) {
@@ -9,7 +11,7 @@ export default class Header extends Component {
     }
 
     render() {
-        return(
+        return (
             <div className="header">
                 <table className="header-table">
                     <tbody>
@@ -18,18 +20,21 @@ export default class Header extends Component {
                                 <table>
                                     <tbody>
                                         <tr>
-                                            <td><Logo/></td>
-                                            <td><SearchBar/></td>
+                                            <td><Logo /></td>
+                                            <td><SearchBar /></td>
                                         </tr>
                                     </tbody>
                                 </table>
                             </td>
                             <td className="header-account-section">
-                                <HeaderAnonLinks/>
+                                {Utility.isLoggedIn() ?
+                                    <HeaderAuthLinks />
+                                    : <HeaderAnonLinks />
+                                }
                             </td>
                         </tr>
                     </tbody>
-                </table>              
+                </table>
             </div>
         )
     }
