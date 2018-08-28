@@ -13,7 +13,7 @@ export default {
             
             this.props.history.push('/catalog');
         },
-        fail: res => {
+        fail: function(res) {
             observer.trigger(observer.events.notification, { 
                 type: 'error', 
                 message: res.responseJSON.description

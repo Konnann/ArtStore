@@ -6,25 +6,18 @@ import userService from '../../services/userService';
 
 export  class LogIn extends React.Component {
 
-    constructor(props) {
-        super(props);
-
-        this.handleChange = this.handleChange.bind(this);
-    }
-
     render() {
-        let model = this.props.model;
         return (
             <div className="content form-container">
                 <em className="section-header">Log In</em>
                 <div className="borders">
-                    <form className="user-form">
+                    <form className="user-form" onSubmit={this.props.handleSubmit}>
                         <table className="formtable">
                             <tr>
                                 <TextField 
                                     label="Username:" 
-                                    value={model ? model.username : '' } 
-                                    handleChange={(e) => this.handleChange(e, 'username')}
+                                    value={this.props.username } 
+                                    handleChange={this.props.handleChange}
                                     type="username"
                                     name="username"
                                 />
@@ -32,8 +25,8 @@ export  class LogIn extends React.Component {
                             <tr>
                                 <TextField 
                                     label="Password:" 
-                                    value={model ? model.password : ''} 
-                                    handleChange={(e) => this.handleChange(e, 'password')}
+                                    value={this.props.password} 
+                                    handleChange={this.props.handleChange}
                                     type="password"
                                     name="password"
                                 />
@@ -47,15 +40,6 @@ export  class LogIn extends React.Component {
             </div>
         )
     }
-
-    handleChange(fieldValue, fieldName) {
-        let model = this.props.model;
-        model[fieldName] = fieldValue;
-        this.setState({
-            model
-        });
-    }
-
 }
 
 export default withFormManager(LogIn, userModel, userService.login);
