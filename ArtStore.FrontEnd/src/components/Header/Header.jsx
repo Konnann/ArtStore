@@ -4,11 +4,24 @@ import SearchBar from './Search';
 import HeaderAnonLinks from './HeaderAnonLinks';
 import Utility from '../../common/Utility';
 import HeaderAuthLinks from './HeaderAuthLinks';
+import observer from '../../infrastructure/observer';
 
 export default class Header extends Component {
     constructor(props) {
         super(props);
+
+        this.state = {
+            username: ''
+        }
+
+        observer.subscribe(observer.events.loginUser, this.loggedIn)
+        observer.subscribe(observer.events.logout, this.logout)
     }
+
+    loggedIn = username =>
+        this.setState({ username })
+
+    logout = () => this.setState({ username: null })
 
     render() {
         return (
@@ -27,8 +40,8 @@ export default class Header extends Component {
                                 </table>
                             </td>
                             <td className="header-account-section">
-                                {Utility.isLoggedIn() ?
-                                    <HeaderAuthLinks />
+                                {this.state.username ?
+                                    <HeaderAuthLinks username={this.state.username} />
                                     : <HeaderAnonLinks />
                                 }
                             </td>
