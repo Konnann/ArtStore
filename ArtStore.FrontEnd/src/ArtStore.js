@@ -8,42 +8,52 @@ import Register from './components/Account/Register'
 import { Route, Switch } from 'react-router';
 import ArtStoreModel from './models/ArtStoreModel';
 import LogIn from './components/Account/LogIn'
-import MerchandiseForm from './components/Merchandise/MerchandiseForm';
+import observer from './infrastructure/observer';
+import Logout from './components/Account/LogOut';
+import MerchandiseForm from './components/Merchandise/MerchandiseForm'
 
 export default class AppStartup extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      model: new ArtStoreModel()
+      model: new ArtStoreModel(),
+      username: '',
+      loggedIn: false
     }
+
 
     this.handleChange = this.handleChange.bind(this);
   }
 
+  onAuthChange = username => {}
+
   render() {
-    const HomePage = () => {
+    const HomePage = (props) => {
       return (
         <Home
+          {...props}
           model={this.state.model.home}
           handleChange={this.handleChange}
         />
       );
     }
 
-    const RegisterPage = () => {
+    const RegisterPage = (props) => {
       return (
         <Register
+          {...props}
           model={this.state.model.register}
           handleChange={this.handleChange}
         />
       );
     }
 
-    const LogInPage = () => {
+    const LogInPage = (props) => {
       return (
         <LogIn
+          {...props}
           model={this.state.model.logIn}
-          handleChange={this.handleChange}
+          handleStateChange={this.handleChange}
         />
       );
     }
@@ -65,8 +75,9 @@ export default class AppStartup extends Component {
             <Switch>
               <Route exact path="/" component={HomePage} />
               <Route path="/register" component={RegisterPage} />
-              <Route path="/logIn" component={LogInPage} />   
-              <Route path="/newMerch" component={MerchandiseForm} />     
+              <Route path="/newMerch" component={MerchandisePage} />     
+              <Route path="/logIn" exact component={LogInPage} />
+              <Route path="/logout" exact component={Logout} />
             </Switch>
           </MainContent>
         </div>
@@ -74,7 +85,8 @@ export default class AppStartup extends Component {
     );
   }
 
-  handleChange() {
+  handleChange(state) {
+    console.log(state)
     this.setState((current) => ({
       ...current
     }))

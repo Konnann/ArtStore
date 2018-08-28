@@ -6,11 +6,11 @@ export default {
         send: data => requester.post('user', 'login', 'basic', data),
         success: function(res) {
             observer.trigger(observer.events.loginUser, res.username);
-            observer.trigger(observer.events.notification, { type: 'success', message: "Successs." })
-            
+            observer.trigger(observer.events.notification, { type: 'success', message: "Login Successs." })
             sessionStorage.setItem('authtoken', res._kmd.authtoken);
             sessionStorage.setItem('userRoles', res.Roles.join(','))
             
+            console.log('context', this)
             this.props.history.push('/catalog');
         },
         fail: function(res) {

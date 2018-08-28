@@ -1,23 +1,16 @@
 import * as React from 'react';
 import TextField from '../Common/TextField'
 import withFormManager from '../../hocs/wiithFormManager'
-import userModel from '../../models/UserModel'
+import registerModel from '../../models/Register'
 import userService from '../../services/userService'
 
 export class Register extends React.Component {
-
-    constructor(props) {
-        super(props);
-
-        this.handleChange = this.handleChange.bind(this);
-    }
-
     render() {
         return (
             <div className="content form-container">
                 <em className="section-header">Register</em>
                 <div className="borders">
-                    <form className="user-form">
+                    <form className="user-form" onSubmit={this.props.handleSubmit}>
                         <table className="formtable">
                             <tr>
                                 <TextField 
@@ -39,7 +32,7 @@ export class Register extends React.Component {
                             <tr>
                                 <TextField 
                                     label="Confirm Password:" 
-                                    value={""} 
+                                    value={this.props.confirmPassword} 
                                     handleChange={this.props.handleChange}
                                     name="confirmPassword"
                                     type="password"
@@ -55,14 +48,6 @@ export class Register extends React.Component {
         )
     }
 
-    handleChange(fieldValue, fieldName) {
-        let model = this.props.model;
-        model[fieldName] = fieldValue;
-        this.setState({
-            model
-        });
-    }
-
 }
 
-export default withFormManager(Register, userModel, userService.register);
+export default withFormManager(Register, registerModel, userService.register);

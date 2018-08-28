@@ -117,6 +117,9 @@ em.section-header {
 
 .header-anon-links {
   float: right;
+  display: flex;
+  justify-content: center;
+  align-items: center;  
 }
 
 .account-header-link {

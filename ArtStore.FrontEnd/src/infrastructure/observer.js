@@ -1,12 +1,14 @@
 let subscriptions = {
     'loginUser': [],
-    'notification': []
+    'notification': [],
+    'logout': []
 };
 
 export default {
     events: {
         loginUser: 'loginUser',
-        notification: 'notification'
+        notification: 'notification',
+        logout: 'logout'
     },
     subscribe: (eventName, fn) => 
         subscriptions[eventName].push(fn),

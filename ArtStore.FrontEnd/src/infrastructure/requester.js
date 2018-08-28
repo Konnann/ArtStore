@@ -1,8 +1,8 @@
 import $ from 'jquery';
 
 const kinveyBaseUrl = "https://baas.kinvey.com/";
-const kinveyAppKey = "kid_HJEjd5HL7";
-const kinveyAppSecret = "6552040f297140db82ee89856b0067a3";
+const kinveyAppKey = "kid_Ski66-XDX";
+const kinveyAppSecret = "662141ee31d047e8b36052c3e22d0d36";
 // Kinvey.init({
 //     instanceId: 'undefined',
 //     appKey: 'kid_HJEjd5HL7',

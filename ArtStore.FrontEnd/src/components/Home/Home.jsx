@@ -13,6 +13,7 @@ export default class Home extends Component {
     async componentDidMount() {
         var items = this.getLatestItems();
         this.setState({items});
+
     }
 
     render() {

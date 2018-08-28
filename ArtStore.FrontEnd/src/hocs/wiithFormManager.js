@@ -53,7 +53,9 @@ export default function withFormManager(Form, model, submitter) {
                 let error = model.validate(data);
                 if (error) {
                     this.setState({ error })
+                    return;
                 }
+
             }
             
             submitter.send(data)
@@ -62,7 +64,6 @@ export default function withFormManager(Form, model, submitter) {
         }
 
         render = () => {
-            console.log('FormManager', this.state);
             return (<Form
                 handleChange={this.handleChange}
                 handleSubmit={this.handleSubmit}
