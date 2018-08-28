@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 
-import { Button } from 'reactstrap';
-
 export default class ItemPreview extends Component {
     constructor(props) {
         super(props);
@@ -10,12 +8,7 @@ export default class ItemPreview extends Component {
         }
     }
     
-    testButton() {
-        
-    }
-
     render() {
-
         return (
             <div className="item-container">
                 <a className="item-preview-link" href={this.props.itemUrl}>
@@ -29,9 +22,7 @@ export default class ItemPreview extends Component {
                                 {this.props.shopName}
                             </a>
                         </p>
-                        <Button color="danger">Details</Button>
                         <p className="item-price">&#36;{this.props.price}  </p>
-                       
                     </div>
                 </a>
             </div>

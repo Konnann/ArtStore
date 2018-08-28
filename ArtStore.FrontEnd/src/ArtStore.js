@@ -8,6 +8,7 @@ import Register from './components/Account/Register'
 import { Route, Switch } from 'react-router';
 import ArtStoreModel from './models/ArtStoreModel';
 import LogIn from './components/Account/LogIn'
+import MerchandiseForm from './components/Merchandise/MerchandiseForm';
 
 export default class AppStartup extends Component {
   constructor(props) {
@@ -47,6 +48,14 @@ export default class AppStartup extends Component {
       );
     }
 
+    const MerchandisePage = () => {
+      return (
+        <MerchandiseForm
+          handleChange={this.handleChange}
+        />
+      );
+    }
+
     return (
       <div className="App">
         <div className="main-container">
@@ -56,7 +65,8 @@ export default class AppStartup extends Component {
             <Switch>
               <Route exact path="/" component={HomePage} />
               <Route path="/register" component={RegisterPage} />
-              <Route path="/logIn" component={LogInPage} />          
+              <Route path="/logIn" component={LogInPage} />   
+              <Route path="/newMerch" component={MerchandiseForm} />     
             </Switch>
           </MainContent>
         </div>

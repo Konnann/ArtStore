@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import ItemPreview from '../Items/ItemPreview';
-import Carousel from '../Items/Carousel';
+import ItemPreview from '../ItemsDisplay/ItemPreview';
+import Carousel from '../ItemsDisplay/Carousel';
 
 export default class Home extends Component {
     constructor(props) {
@@ -69,7 +69,7 @@ export default class Home extends Component {
                 id: '5',
                 itemUrl: "#",
                 imageUrl: "https://instagram.fsof3-1.fna.fbcdn.net/vp/a00120c59c0dc09c46d331eb63b365a6/5BE6C41E/t51.2885-15/e35/20838945_175561016322121_1173313923428909056_n.jpg",
-                title: "Handmade sketchbook",
+                title: "Sketchbook",
                 shopName: "ArtOfRai",
                 price: "15.00",
                 shopUrl: "#"
